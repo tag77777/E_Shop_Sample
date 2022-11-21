@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottomNavView"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="72dp"
+    android:gravity="center_vertical"
+    android:background="@drawable/black_shape_bg"
+    android:paddingStart="17dp"
+    android:paddingEnd="17dp"
+    >
+
+    <ImageView
+        android:id="@+id/explorerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_home"
+        android:contentDescription="@string/explorer"
+        android:layout_marginStart="24dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/explorer"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="@color/white"
+        tools:ignore="SpUsage"
+        />
+
+    <ImageView
+        android:id="@+id/searchBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="0dp"
+        app:srcCompat="@drawable/ic_search"
+        android:contentDescription="@string/add_to_cart"
+        android:layout_marginStart="42dp"
+        />
+
+   <ImageView
+        android:id="@+id/filterBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_filter"
+        android:contentDescription="@string/add_to_cart"
+        android:layout_marginStart="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/cartBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_cart_nav"
+        android:contentDescription="@string/add_to_cart"
+        android:layout_marginStart="16dp"
+        />
+
+    <ImageView
+        android:id="@+id/favoritesBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/ic_favorite_nav"
+        app:tint="@color/white"
+        android:contentDescription="@string/favorites"
+        android:layout_marginStart="16dp"
+        />
+
+</LinearLayout>

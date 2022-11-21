@@ -1,0 +1,229 @@
+{
+  "home_store": [
+    {
+      "id": 11,
+      "is_new": true,
+      "title": "Iphone 12",
+      "subtitle": "Súper. Mega. Rápido.",
+      "picture": "https://img.ibxk.com.br/2020/09/23/23104013057475.jpg?w=1120&h=420&mode=crop&scale=both",
+      "is_buy" : true
+    },
+    {
+      "id": 22,
+      "title": "Samsung Galaxy A71",
+      "subtitle": "Súper. Mega. Rápido.",
+      "picture": "https://cdn-2.tstatic.net/kupang/foto/bank/images/pre-order-samsung-galaxy-a71-laris-manis-inilah-rekomendasi-ponsel-harga-rp-6-jutaan.jpg",
+      "is_buy" : true
+    },
+    {
+      "id": 33,
+      "title": "Xiaomi Mi 11 ultra",
+      "subtitle": "Súper. Mega. Rápido.",
+      "picture": "https://static.digit.in/default/942998b8b4d3554a6259aeb1a0124384dbe0d4d5.jpeg",
+      "is_buy" : true
+    }
+  ],
+  "best_seller": [
+    {
+      "id": 1,
+      "is_favorites": true,
+      "title": "Samsung Galaxy s20 Ultra",
+      "price_without_discount": 1047,
+      "discount_price": 1500,
+      "picture": "https://shop.gadgetufa.ru/images/upload/52534-smartfon-samsung-galaxy-s20-ultra-12-128-chernyj_1024.jpg"
+    },
+    {
+      "id": 2,
+      "is_favorites": true,
+      "title": "Xiaomi Mi 10 Pro",
+      "price_without_discount": 300,
+      "discount_price": 400,
+      "picture": "https://mi92.ru/wp-content/uploads/2020/03/smartfon-xiaomi-mi-10-pro-12-256gb-global-version-starry-blue-sinij-1.jpg"
+    },
+    {
+      "id": 3,
+      "is_favorites": true,
+      "title": "Samsung Note 20 Ultra",
+      "price_without_discount": 1047,
+      "discount_price": 1500,
+      "picture": "https://opt-1739925.ssl.1c-bitrix-cdn.ru/upload/iblock/c01/c014d088c28d45b606ed8c58e5817172.jpg?160405904823488"
+    },
+    {
+      "id": 4,
+      "is_favorites": true,
+      "title": "Motorola One Edge ",
+      "price_without_discount": 300,
+      "discount_price": 400,
+      "picture": "https://www.benchmark.rs/assets/img/news/edge1.jpg"
+    },
+    {
+      "id": 5,
+      "is_favorites": false,
+      "title": "XIAOMI REDMI A1",
+      "price_without_discount": 412,
+      "discount_price": 399,
+      "picture": "https://applesin-online.ru/upload/iblock/b66/b662caf261cb6a453f76d86127df02a9.jpg"
+    },
+    {
+      "id": 6,
+      "is_favorites": false,
+      "title": "XIAOMI 12T",
+      "price_without_discount": 1549,
+      "discount_price": 1499,
+      "picture": "https://applesin-online.ru/upload/iblock/49b/49b57afc30bffde671d0c61e2e2dfca0.jpg"
+    },
+    {
+      "id": 7,
+      "is_favorites": false,
+      "title": "XIAOMI POCO M4 ",
+      "price_without_discount": 738,
+      "discount_price": 699,
+      "picture": "https://applesin-online.ru/upload/iblock/133/1335221ceffe45bd93b8ab2efa6f9cb8.jpg"
+    },
+    {
+      "id": 8,
+      "is_favorites": false,
+      "title": "XIAOMI 12X",
+      "price_without_discount": 1476,
+      "discount_price": 1399,
+      "picture": "https://applesin-online.ru/upload/iblock/6a5/6a58409ff22c2dae3cd118622bf51c5f.jpg"
+    },
+    {
+      "id": 9,
+      "is_favorites": false,
+      "title": "SAMSUNG GALAXY A12 ",
+      "price_without_discount": 648,
+      "discount_price": 599,
+      "picture": "https://applesin-online.ru/upload/iblock/243/24327a4cd8d253875068b30aa584cc21.jpg"
+    },
+    {
+      "id": 10,
+      "is_favorites": false,
+      "title": "SAMSUNG GALAXY M12",
+      "price_without_discount": 658,
+      "discount_price": 599,
+      "picture": "https://applesin-online.ru/upload/iblock/ca7/ca773268f315d8f085d169f22c0f723d.jpg"
+    },
+    {
+      "id": 11,
+      "is_favorites": false,
+      "title": "SAMSUNG GALAXY A32",
+      "price_without_discount": 1264,
+      "discount_price": 1199,
+      "picture": "https://applesin-online.ru/upload/iblock/618/6188aa66dd4eed7a39644e4be2960a51.jpg"
+    },
+    {
+      "id": 12,
+      "is_favorites": false,
+      "title": "Realme C30",
+      "price_without_discount": 557,
+      "discount_price": 519,
+      "picture": "https://applesin-online.ru/upload/iblock/52e/52e19b40021c851b980015a6af2cf6a6.jpg"
+    },
+    {
+      "id": 13,
+      "is_favorites": false,
+      "title": "Realme C21Y",
+      "price_without_discount": 395,
+      "discount_price": 379,
+      "picture": "https://applesin-online.ru/upload/iblock/3aa/3aa5bb95584807b8682594e79659904c.jpg"
+    },
+    {
+      "id": 14,
+      "is_favorites": false,
+      "title": "Realme C25S",
+      "price_without_discount": 654,
+      "discount_price": 619,
+      "picture": "https://applesin-online.ru/upload/iblock/2d7/2d7df0cbb4cbcb2592074c38f6f9cd73.jpg"
+    },
+    {
+      "id": 15,
+      "is_favorites": false,
+      "title": "Realme 8i ",
+      "price_without_discount": 384,
+      "discount_price": 379,
+      "picture": "https://applesin-online.ru/upload/iblock/3fb/3fb55de8086ea0579671f9de30fde8b0.jpg"
+    },
+    {
+      "id": 16,
+      "is_favorites": false,
+      "title": "Realme 8",
+      "price_without_discount": 1746,
+      "discount_price": 1699,
+      "picture": "https://applesin-online.ru/upload/iblock/626/626218019035fbc0dfb21d49b51d4ed3.jpg"
+    },
+    {
+      "id": 17,
+      "is_favorites": false,
+      "title": "REALME 9 PRO",
+      "price_without_discount": 1648,
+      "discount_price": 1599,
+      "picture": "https://applesin-online.ru/upload/iblock/b79/b79f42e1d7c52ad58cd9d1ce6f7d56fe.png"
+    },
+    {
+      "id": 18,
+      "is_favorites": false,
+      "title": "HUAWEI Mock 1",
+      "price_without_discount": 2450,
+      "discount_price": 3999,
+      "picture": "https://applesin-online.ru/upload/iblock/b66/b662caf261cb6a453f76d86127df02a9.jpg"
+    },
+    {
+      "id": 19,
+      "is_favorites": false,
+      "title": "HUAWEI Mock 2",
+      "price_without_discount": 300,
+      "discount_price": 400,
+      "picture": "https://applesin-online.ru/upload/iblock/49b/49b57afc30bffde671d0c61e2e2dfca0.jpg"
+    },
+    {
+      "id": 20,
+      "is_favorites": false,
+      "title": "HUAWEI Mock 3",
+      "price_without_discount": 300,
+      "discount_price": 400,
+      "picture": "https://applesin-online.ru/upload/iblock/9af/9aff416ec63c39736c406864616df71d.jpg"
+    },
+    {
+      "id": 21,
+      "is_favorites": false,
+      "title": "HUAWEI Mock 4",
+      "price_without_discount": 300,
+      "discount_price": 400,
+      "picture": "https://applesin-online.ru/upload/iblock/ac4/ac41332909921abb9d10511a1651ebda.jpg"
+    },
+    {
+      "id": 22,
+      "is_favorites": false,
+      "title": "PIXEL Mock 1",
+      "price_without_discount": 300,
+      "discount_price": 400,
+      "picture": "https://applesin-online.ru/upload/iblock/825/825af35ee16c273233815a73e7234a0e.png"
+    },
+    {
+      "id": 23,
+      "is_favorites": false,
+      "title": "PIXEL Mock 2",
+      "price_without_discount": 300,
+      "discount_price": 400,
+      "picture": "https://applesin-online.ru/upload/iblock/133/1335221ceffe45bd93b8ab2efa6f9cb8.jpg"
+    },
+    {
+      "id": 24,
+      "is_favorites": false,
+      "title": "PIXEL Mock 3",
+      "price_without_discount": 300,
+      "discount_price": 400,
+      "picture": "https://applesin-online.ru/upload/iblock/9dd/9dd6238514c089389f0d4610fe369813.png"
+    },
+    {
+      "id": 25,
+      "is_favorites": false,
+      "title": "PIXEL Mock 4",
+      "price_without_discount": 300,
+      "discount_price": 400,
+      "picture": "https://applesin-online.ru/upload/iblock/e3a/e3a00a73fb9f4032a57e9cd94dcb9da5.jpg"
+    }
+  ]
+
+}
