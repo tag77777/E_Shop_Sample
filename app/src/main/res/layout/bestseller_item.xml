@@ -14,6 +14,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        tools:background="@color/gray"
         >
 
 
@@ -31,8 +32,8 @@
 
         <ImageButton
             android:id="@+id/favoriteImageButton"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="49dp"
+            android:layout_height="49dp"
             android:src="@drawable/ic_favorite_off"
             android:padding="8dp"
             android:background="@drawable/ic_favorite_bg"

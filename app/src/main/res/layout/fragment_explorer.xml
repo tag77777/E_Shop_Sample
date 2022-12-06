@@ -40,7 +40,7 @@
             android:layout_marginEnd="8dp"
 
             app:layout_constraintEnd_toStartOf="@id/cityTextView"
-            app:layout_constraintBottom_toBottomOf="@id/cityTextView"
+            app:layout_constraintTop_toTopOf="@id/cityTextView"
             />
 
         <ImageView
