@@ -12,5 +12,6 @@
     <color name="orange">#FF5722</color>
     <color name="count_gray">#FF282843</color>
     <color name="card_black">#FF151515</color>
+    <color name="gray">#77777777</color>
 
 </resources>

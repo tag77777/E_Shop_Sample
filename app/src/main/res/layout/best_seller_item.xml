@@ -6,6 +6,8 @@
     android:layout_height="wrap_content"
     android:layout_margin="7dp"
     app:cardCornerRadius="8dp"
+    android:focusable="true"
+    android:clickable="true"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout

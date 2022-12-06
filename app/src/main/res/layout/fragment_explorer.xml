@@ -56,47 +56,21 @@
             app:layout_constraintTop_toTopOf="@id/cityTextView"
             android:contentDescription="@string/city" />
 
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/categoryTabLayout"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/categoriesRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabContentStart="8dp"
-            app:tabIndicatorFullWidth="false"
-            app:tabIndicatorHeight="0dp"
-            app:tabMode="scrollable"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
+            android:overScrollMode="never"
 
             android:layout_marginTop="32dp"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cityTextView"
-            >
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout="@layout/categories_item" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout="@layout/categories_item" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout="@layout/categories_item" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout="@layout/categories_item" />
-
-            <com.google.android.material.tabs.TabItem
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout="@layout/categories_item" />
-        </com.google.android.material.tabs.TabLayout>
+            tools:listitem="@layout/categories_item"
+            />
 
         <TextView
             android:id="@+id/selectCategoryTV"
@@ -110,26 +84,11 @@
             android:layout_marginStart="8dp"
 
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@id/categoryTabLayout"
-            />
-
-        <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
-            android:id="@+id/hotSaleCarousel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="40dp"
-
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/categoryTabLayout"
-            tools:listitem="@layout/hot_sale_item"
+            app:layout_constraintBottom_toTopOf="@id/categoriesRecyclerView"
             />
 
         <TextView
-            android:id="@+id/hotSaleTV"
+            android:id="@+id/addAddressTV"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/hot_sales"
@@ -144,21 +103,26 @@
             />
 
         <TextView
-            android:id="@+id/seeMoreTV"
+            android:id="@+id/hotSalesSeeMoreBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/see_more"
+            android:textColor="@color/orange"
+            android:focusable="true"
+            android:clickable="true"
 
             app:layout_constraintEnd_toEndOf="@id/hotSaleCarousel"
-            app:layout_constraintBottom_toBottomOf="@id/hotSaleTV"
+            app:layout_constraintBottom_toBottomOf="@id/addAddressTV"
             />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/bestsellerRecyclerView"
+        <com.jackandphantom.carouselrecyclerview.CarouselRecyclerview
+            android:id="@+id/hotSaleCarousel"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-            app:spanCount="2"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            android:orientation="horizontal"
 
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp"
@@ -166,11 +130,9 @@
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/hotSaleCarousel"
-            app:layout_constraintBottom_toBottomOf="parent"
-            tools:listitem="@layout/bestseller_item"
+            app:layout_constraintTop_toBottomOf="@id/categoriesRecyclerView"
+            tools:listitem="@layout/home_store_item"
             />
-
 
         <TextView
             android:id="@+id/bestsellerTV"
@@ -183,19 +145,58 @@
 
             android:layout_marginBottom="2dp"
 
-            app:layout_constraintStart_toStartOf="@id/hotSaleTV"
+            app:layout_constraintStart_toStartOf="@id/addAddressTV"
             app:layout_constraintBottom_toTopOf="@id/bestsellerRecyclerView"
             />
 
         <TextView
-            android:id="@+id/seeMoreBestsellerTV"
+            android:id="@+id/bestSellersSeeMoreBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/see_more"
+            android:textColor="@color/orange"
+            android:focusable="true"
+            android:clickable="true"
 
             app:layout_constraintBottom_toBottomOf="@id/bestsellerTV"
-            app:layout_constraintEnd_toEndOf="@id/seeMoreTV"
+            app:layout_constraintEnd_toEndOf="@id/hotSalesSeeMoreBtn"
             />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/bestsellerRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="40dp"
+
+            android:layout_marginEnd="8dp"
+            app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hotSaleCarousel"
+            app:layout_constraintVertical_bias="1.0"
+            app:spanCount="2"
+            tools:listitem="@layout/bestseller_item" />
+
+        <FrameLayout
+            android:id="@+id/bottomNavFrame"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            >
+
+            <include
+                android:id="@+id/navigationBarView"
+                layout="@layout/bottom_nav_bar"
+                />
+
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

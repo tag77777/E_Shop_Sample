@@ -1,4 +1,4 @@
-package a77777_888.me.t.data.remote.testtaskrepository.entities
+package a77777_888.me.t.data.remote.entities
 
 import a77777_888.me.t.domain.model.IPhoneDetails
 import com.google.gson.annotations.SerializedName

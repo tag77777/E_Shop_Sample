@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Ecommerce Sample</string>
+    <string name="app_name">E Shop Sample</string>
     <string name="phones">Phones</string>
     <string name="phones_category_title">Phones</string>
     <string name="books_category_title">Books</string>
@@ -38,4 +38,43 @@
     <string name="photo">photo</string>
     <string name="remove">remove</string>
     <string name="please_wait">Please wait</string>
+    <string name="category_button">category button</string>
+    <string name="try_again">Try again</string>
+    <string name="error_message">Oops... error happened</string>
+    <string name="close">close</string>
+    <string name="filter_options">Filter options</string>
+    <string name="brand">Brand</string>
+    <string name="price">Price</string>
+    <string name="size">Size</string>
+    <string name="done">Done</string>
+    <string name="search">Search</string>
+    <string name="add_address">Add address</string>
+    <string name="my_cart">My Cart</string>
+    <string name="my_favorites">My Favorites</string>
+    <string name="checkout">Checkout</string>
+    <string name="delivery">Delivery</string>
+    <string name="free">Free</string>
+    <string name="total">Total</string>
+    <string name="remove_from_cart">Remove from Cart</string>
+
+    <string-array name="brands">
+        <item>Xiaomi</item>
+        <item>Samsung</item>
+        <item>Huawei</item>
+    </string-array>
+
+    <string-array name="prices">
+        <item>$0-$500</item>
+        <item>$501-$1000</item>
+        <item>$1001-$1500</item>
+        <item>$1501-$2000</item>
+    </string-array>
+
+    <string-array name="sizes">
+        <item>3.5 to 4.9 inches</item>
+        <item>5.0 to 5.4 inches</item>
+        <item>5.4 to 5.9 inches</item>
+        <item>6.0 to 6.4 inches</item>
+        <item>over 6.5 inches</item>
+    </string-array>
 </resources>

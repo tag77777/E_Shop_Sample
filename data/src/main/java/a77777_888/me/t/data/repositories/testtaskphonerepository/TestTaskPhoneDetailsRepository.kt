@@ -6,14 +6,24 @@ import a77777_888.me.t.domain.repositories.phone.IPhoneDetailsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
+//class TestTaskPhoneDetailsRepository(
+//    private val testTaskSourceProvider: TestTaskSourceProvider
+//) : IPhoneDetailsRepository {
+//
+//    override fun getPhoneDetails(): Flow<LoadResult<IPhoneDetails>> =
+//        wrapToFlowForTestTask {
+//            testTaskSourceProvider.api.getPhoneDetails()
+//        }
+//}
+
 class TestTaskPhoneDetailsRepository(
     private val testTaskSourceProvider: TestTaskSourceProvider
 ) : IPhoneDetailsRepository {
 
-    override fun getPhoneDetails(): Flow<LoadResult<IPhoneDetails>> =
-        wrapToFlowForTestTask {
-            testTaskSourceProvider.api.getPhoneDetails()
-        }
+    override suspend fun getPhoneDetails(): IPhoneDetails {
+        return testTaskSourceProvider.api.getPhoneDetails()
+    }
+
 }
 
 fun <T> wrapToFlowForTestTask(block: suspend () -> T): Flow<LoadResult<T>> =

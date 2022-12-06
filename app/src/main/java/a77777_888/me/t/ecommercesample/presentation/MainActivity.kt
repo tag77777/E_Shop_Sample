@@ -3,41 +3,25 @@ package a77777_888.me.t.ecommercesample.presentation
 import a77777_888.me.t.data.remote.mockrepository.MockDataRepository
 import a77777_888.me.t.ecommercesample.R
 import a77777_888.me.t.ecommercesample.databinding.ActivityMainBinding
-import android.annotation.SuppressLint
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import com.google.android.material.tabs.TabLayout
+import androidx.appcompat.app.AppCompatActivity
+import dagger.hilt.android.AndroidEntryPoint
 
-const val TAG = "Ecommerce"
-
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
-    @SuppressLint("SetTextI18n")
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+
+        MockDataRepository.init(applicationContext)
 
         val binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        val tabLayout = TabLayout(this)
-
-
-        binding.textView.text = "Hello Sasha!!!"
-        Log.e(TAG, "onCreate: Hello Sasha!!!", )
+        window.statusBarColor = Color.WHITE
 
 
-        try {
-            MockDataRepository.init(this)
-            binding.textView.text = MockDataRepository.phoneDetailsResponse.toString()
-            Log.i(
-                TAG,
-                MockDataRepository.phoneDetailsResponse.toString() + "\n" +
-                        MockDataRepository.phonesResponse.toString()
-            )
-        } catch (e: Exception) {
-            Log.e(TAG, "onCreate: ", e)
-        }
     }
-
 
 }

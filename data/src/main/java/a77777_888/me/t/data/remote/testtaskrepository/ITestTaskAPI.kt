@@ -1,7 +1,7 @@
 package a77777_888.me.t.data.remote.testtaskrepository
 
-import a77777_888.me.t.data.remote.testtaskrepository.entities.PhoneDetailsResponse
-import a77777_888.me.t.data.remote.testtaskrepository.entities.PhonesResponse
+import a77777_888.me.t.data.remote.entities.PhoneDetailsResponse
+import a77777_888.me.t.data.remote.entities.PhonesResponse
 import retrofit2.http.GET
 
 interface ITestTaskAPI {

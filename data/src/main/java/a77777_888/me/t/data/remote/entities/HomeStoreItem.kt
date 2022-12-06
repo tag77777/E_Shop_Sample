@@ -1,9 +1,9 @@
-package a77777_888.me.t.data.remote.testtaskrepository.entities
+package a77777_888.me.t.data.remote.entities
 
 import a77777_888.me.t.domain.model.IHomeStoreItem
 import com.google.gson.annotations.SerializedName
 
-data class HomeStore(
+data class HomeStoreItem(
     override val id: Int,
     @SerializedName("is_buy")
     override val isBuy: Boolean,

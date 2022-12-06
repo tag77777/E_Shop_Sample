@@ -7,6 +7,8 @@
     android:layout_height="240dp"
     app:cardCornerRadius="8dp"
     android:elevation="8dp"
+    android:focusable="true"
+    android:clickable="true"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,7 +29,8 @@
             app:layout_constraintBottom_toTopOf="@id/discountPriceTextView"
             />
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/favoriteImageButton"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:src="@drawable/ic_favorite_off"

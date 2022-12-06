@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/explorerFragment">
+
+    <fragment
+        android:id="@+id/explorerFragment"
+        android:name="a77777_888.me.t.ecommercesample.presentation.explorerfragment.ExplorerFragment"
+        android:label="fragment_explorer"
+        tools:layout="@layout/fragment_explorer" >
+        <action
+            android:id="@+id/action_explorerFragment_to_phoneDetailsFragment"
+            app:destination="@id/phoneDetailsFragment" />
+        <action
+            android:id="@+id/action_explorerFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+        <action
+            android:id="@+id/action_explorerFragment_to_favoritesFragment"
+            app:destination="@id/favoritesFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/phoneDetailsFragment"
+        android:name="a77777_888.me.t.ecommercesample.presentation.phonedetailsfragment.PhoneDetailsFragment"
+        android:label="fragment_phone_details"
+        tools:layout="@layout/fragment_phone_details" >
+        <action
+            android:id="@+id/action_phoneDetailsFragment_to_cartFragment"
+            app:destination="@id/cartFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="a77777_888.me.t.ecommercesample.presentation.cartfragment.CartFragment"
+        android:label="CartFragment" />
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="a77777_888.me.t.ecommercesample.presentation.favoritesfragment.FavoritesFragment"
+        android:label="FavoritesFragment" />
+</navigation>

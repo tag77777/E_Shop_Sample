@@ -1,6 +1,6 @@
 package a77777_888.me.t.ecommercesample
 
-import a77777_888.me.t.ecommercesample.model.Category
+import a77777_888.me.t.ecommercesample.presentation.model.Category
 import org.junit.Test
 
 import org.junit.Assert.*

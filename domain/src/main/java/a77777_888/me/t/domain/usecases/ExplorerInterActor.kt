@@ -2,17 +2,15 @@ package a77777_888.me.t.domain.usecases
 
 import a77777_888.me.t.domain.model.IPhones
 import a77777_888.me.t.domain.model.LoadResult
+import a77777_888.me.t.domain.model.SuccessLoadResult
 import a77777_888.me.t.domain.repositories.phone.IPhonesRepository
-import kotlinx.coroutines.flow.Flow
 
-class ExplorerInterActor(
-    private val iPhonesRepository: IPhonesRepository
-) {
-    fun phones(): Flow<LoadResult<IPhones>> = iPhonesRepository.phones()
-    fun <T> tablets(): T? = null
-    fun <T> tvSets(): T? = null
-    fun <T> computers(): T? = null
-    fun <T> tools(): T? = null
-    fun <T> autoAccessories(): T? = null
-    fun <T> books(): T? = null
+class ExplorerInterActor (private val iPhonesRepository: IPhonesRepository) {
+    suspend fun phones(): LoadResult<IPhones> = SuccessLoadResult(iPhonesRepository.phones())
+    fun <T> tablets(): LoadResult<T>? = null
+    fun <T> tvSets(): LoadResult<T>? = null
+    fun <T> computers(): LoadResult<T>? = null
+    fun <T> tools(): LoadResult<T>? = null
+    fun <T> autoAccessories(): LoadResult<T>? = null
+    fun <T> books(): LoadResult<T>? = null
 }

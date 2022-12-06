@@ -1,7 +1,7 @@
 package a77777_888.me.t.data.remote.mockrepository
 
-import a77777_888.me.t.data.remote.testtaskrepository.entities.PhoneDetailsResponse
-import a77777_888.me.t.data.remote.testtaskrepository.entities.PhonesResponse
+import a77777_888.me.t.data.remote.entities.PhoneDetailsResponse
+import a77777_888.me.t.data.remote.entities.PhonesResponse
 import android.content.Context
 import com.google.gson.Gson
 

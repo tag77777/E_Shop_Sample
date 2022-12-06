@@ -1,11 +1,11 @@
-package a77777_888.me.t.data.remote.testtaskrepository.entities
+package a77777_888.me.t.data.remote.entities
 
 import a77777_888.me.t.domain.model.IPhones
 import com.google.gson.annotations.SerializedName
 
 data class PhonesResponse(
     @SerializedName("best_seller")
-    override val bestSeller: List<BestSeller>,
+    override val bestSeller: List<BestSellerItem>,
     @SerializedName("home_store")
-    override val homeStore: List<HomeStore>
+    override val homeStore: List<HomeStoreItem>
 ) : IPhones

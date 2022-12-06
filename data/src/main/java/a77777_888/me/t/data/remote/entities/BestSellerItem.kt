@@ -1,9 +1,9 @@
-package a77777_888.me.t.data.remote.testtaskrepository.entities
+package a77777_888.me.t.data.remote.entities
 
 import a77777_888.me.t.domain.model.IBestSellerItem
 import com.google.gson.annotations.SerializedName
 
-data class BestSeller(
+data class BestSellerItem(
     @SerializedName("discount_price")
     override val discountPrice: Int,
     override val id: Int,
