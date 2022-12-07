@@ -6,12 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="4dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/card_black"
+        android:background="@color/darker_gray"
         >
 
         <androidx.cardview.widget.CardView
@@ -24,19 +25,21 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             >
+
             <ImageView
                 android:id="@+id/imageView"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                tools:background="#777777"
-                android:contentDescription="@string/photo" />
+                android:contentDescription="@string/photo"
+                tools:background="#777777" />
         </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/titleTextView"
-            android:layout_width="168dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:lines="2"
+            android:lines="1"
+            android:ellipsize="end"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18sp"
@@ -45,6 +48,7 @@
             android:layout_marginTop="8dp"
 
             app:layout_constraintStart_toEndOf="@id/imageCV"
+            app:layout_constraintEnd_toStartOf="@id/numberLayout"
             app:layout_constraintTop_toTopOf="@id/imageCV"
             tools:text="Samsung QE"
             />
@@ -65,12 +69,12 @@
 
         <ImageView
             android:id="@+id/removeBtn"
-            android:layout_width="wrap_content"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_remove"
-            app:tint="#777777"
+            app:tint="@color/lite_gray"
 
-            android:layout_marginEnd="40dp"
+            android:layout_marginEnd="32dp"
 
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -78,6 +82,7 @@
             android:contentDescription="@string/remove" />
 
         <LinearLayout
+            android:id="@+id/numberLayout"
             android:layout_width="26dp"
             android:layout_height="68dp"
             android:gravity="center_horizontal"
@@ -93,7 +98,7 @@
 
             <ImageView
                 android:id="@+id/plusBtn"
-                android:layout_width="match_parent"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/plus"
                 android:paddingTop="14dp"
@@ -108,12 +113,12 @@
                 android:layout_height="wrap_content"
                 android:text="@string/_1"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                />
+                android:textSize="18dp"
+                tools:ignore="SpUsage" />
 
             <ImageView
                 android:id="@+id/minusBtn"
-                android:layout_width="match_parent"
+                android:layout_width="48dp"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/minus"
                 android:paddingTop="6dp"

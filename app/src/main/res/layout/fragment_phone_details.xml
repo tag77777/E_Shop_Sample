@@ -87,6 +87,8 @@
             android:textColor="@color/black"
             android:textSize="24sp"
 
+            android:layout_marginBottom="8dp"
+
             app:layout_constraintStart_toStartOf="@id/colorCase1IV"
             app:layout_constraintBottom_toTopOf="@id/rating"
             tools:text="Galaxy Note 20 Ultra"
@@ -103,17 +105,18 @@
             android:layout_marginEnd="16dp"
 
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="@id/titleTextView"
+            app:layout_constraintTop_toTopOf="@id/rating"
             android:contentDescription="@string/favorites" />
 
+<!--        android:secondaryProgressTint="@android:color/holo_orange_light"-->
         <RatingBar
             android:id="@+id/rating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            style="?android:attr/ratingBarStyleIndicator"
-            android:theme="@style/RatingBarStyle"
+            android:progressBackgroundTint="@android:color/darker_gray"
+            android:progressTint="@android:color/holo_orange_light"
             android:numStars="5"
-            android:rating="4.5"
+            android:rating="4.3"
             android:isIndicator="true"
             android:scaleX="0.7"
             android:scaleY="0.7"

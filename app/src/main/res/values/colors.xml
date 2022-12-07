@@ -10,8 +10,9 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="orange">#FF5722</color>
-    <color name="count_gray">#FF282843</color>
+    <color name="darker_gray">#282828</color>
     <color name="card_black">#FF151515</color>
     <color name="gray">#77777777</color>
+    <color name="lite_gray">#C8C8C8</color>
 
 </resources>

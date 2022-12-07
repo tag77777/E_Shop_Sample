@@ -47,8 +47,6 @@
             android:layout_marginEnd="40dp"
             android:contentDescription="@string/add_to_cart"
             android:padding="8dp"
-            android:scaleX="2"
-            android:scaleY="2"
             android:src="@drawable/ic_gps"
             />
 
@@ -88,29 +86,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="100"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="vertical"
-                android:layout_marginTop="24dp"
-                tools:listitem="@layout/favorites_item"
-                />
-
-            <Button
-                android:id="@+id/checkoutButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/checkout"
-                android:textAppearance="?attr/textAppearanceListItem"
-                android:textSize="24dp"
-                android:textStyle="bold"
-                android:padding="8dp"
-
-                android:layout_marginStart="48dp"
-                android:layout_marginEnd="48dp"
-                android:layout_marginTop="32dp"
-                android:layout_marginBottom="8dp"
-
-                tools:ignore="SpUsage" />
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/favorites_item" />
 
         </LinearLayout>
 

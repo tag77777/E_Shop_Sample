@@ -75,7 +75,6 @@
             android:id="@+id/brandSpinner"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="@drawable/filter_spinner_background"
             android:entries="@array/brands"
             android:contentDescription="@string/brand"
 
@@ -104,7 +103,6 @@
             android:id="@+id/priceSpinner"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="@drawable/filter_spinner_background"
             android:entries="@array/prices"
             android:contentDescription="@string/price"
 
@@ -133,7 +131,6 @@
             android:id="@+id/sizeSpinner"
             android:layout_width="0dp"
             android:layout_height="40dp"
-            android:background="@drawable/filter_spinner_background"
             android:entries="@array/sizes"
             android:contentDescription="@string/size"
 

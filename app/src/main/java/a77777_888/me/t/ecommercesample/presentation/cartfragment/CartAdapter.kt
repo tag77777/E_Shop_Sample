@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class CartAdapter(
-    iCartRepository: ICartRepository
+    iCartRepository: ICartRepository,
+    private val emptyListListener: EmptyListListener
 ) : RecyclerView.Adapter<CartAdapter.Holder>(){
 
     private val cartInterActor = CartInterActor(iCartRepository)
@@ -31,6 +32,7 @@ class CartAdapter(
                 titleTextView.text = product.title
                 priceTextView.text = product.price.toString()
                 numberTextView.text = number.toString()
+                removeBtn.tag = position
 
                 plusBtn.setOnClickListener {
                     numberTextView.text = (++number).toString()
@@ -42,8 +44,11 @@ class CartAdapter(
                 }
 
                 removeBtn.setOnClickListener {
-                    cartInterActor.removeCartItem(item)
-                    items.remove(item)
+                    val removedItem = items[it.tag as Int]
+                    cartInterActor.removeCartItem(removedItem)
+                    items.remove(removedItem)
+                    if (items.isEmpty()) emptyListListener.onEmptyCartList()
+
                     notifyDataSetChanged()
                 }
 
@@ -57,6 +62,10 @@ class CartAdapter(
 
     override fun getItemCount(): Int {
         return cartInterActor.size()
+    }
+
+    interface EmptyListListener {
+        fun onEmptyCartList()
     }
 
     class Holder(val binding:CartItemBinding) : RecyclerView.ViewHolder(binding.root)

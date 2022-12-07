@@ -152,8 +152,8 @@ childFragmentManager.setFragmentResultListener(
          hotSaleCarousel.apply {
             adapter = HomeStoreAdapter(this@ExplorerFragment, homeStoresList)
             setInfinite(true)
-            setIntervalRatio(1f)
-            setAlpha(true)
+//            setIntervalRatio(0.4f)
+//            setAlpha(true)
             setFlat(true)
          }
 

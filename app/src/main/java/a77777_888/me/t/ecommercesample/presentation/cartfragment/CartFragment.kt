@@ -13,7 +13,8 @@ import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CartFragment : Fragment(R.layout.fragment_cart) {
+class CartFragment : Fragment(R.layout.fragment_cart),
+    CartAdapter.EmptyListListener {
 
     @Inject lateinit var iCartRepository: ICartRepository
     private lateinit var cartInterActor: CartInterActor
@@ -22,7 +23,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
         super.onViewCreated(view, savedInstanceState)
 
         val binding = FragmentCartBinding.bind(view)
-        val adapter = CartAdapter(iCartRepository)
+        val adapter = CartAdapter(iCartRepository, this)
         cartInterActor = CartInterActor(iCartRepository)
 
         with(binding) {
@@ -30,7 +31,7 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             cartRecyclerView.adapter = adapter
 
             cancelButton.setOnClickListener {
-                findNavController().navigateUp()
+                exit()
             }
 
             checkoutButton.setOnClickListener {
@@ -46,6 +47,14 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
 
         val bundle = bundleOf(NUMBER to cartInterActor.size())
         parentFragmentManager.setFragmentResult(CART, bundle)
+    }
+
+    override fun onEmptyCartList() {
+        exit()
+    }
+
+    private fun exit() {
+        findNavController().navigateUp()
     }
 
     companion object {

@@ -85,7 +85,7 @@ class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) {
                 imagesCarousel.apply {
                     adapter = ImagesDetailsAdapter(phoneUIDetails.images)
                     setInfinite(true)
-                    setIntervalRatio(0.4f)
+//                    setIntervalRatio(0.4f)
                     setAlpha(true)
                 }
 

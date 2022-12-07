@@ -20,7 +20,7 @@
     <string name="see_more">see more</string>
     <string name="best_seller">Best Seller</string>
     <string name="dollar">$</string>
-    <string name="add_to_cart">Add to Cart          $</string>
+    <string name="add_to_cart">Add to Cart\u0020\u0020\u0020      $</string>
     <string name="_128_gb">128 Gb</string>
     <string name="select_color_and_capacity">Select color and capacity</string>
     <string name="product_details">Product details</string>
@@ -56,6 +56,7 @@
     <string name="free">Free</string>
     <string name="total">Total</string>
     <string name="remove_from_cart">Remove from Cart</string>
+    <string name="exit">Exit</string>
 
     <string-array name="brands">
         <item>Xiaomi</item>

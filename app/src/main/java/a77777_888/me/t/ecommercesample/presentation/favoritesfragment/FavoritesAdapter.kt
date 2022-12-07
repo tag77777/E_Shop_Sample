@@ -1,20 +1,22 @@
 package a77777_888.me.t.ecommercesample.presentation.favoritesfragment
 
+import a77777_888.me.t.domain.model.ProductItem
 import a77777_888.me.t.domain.repositories.IFavoritesRepository
 import a77777_888.me.t.domain.usecases.FavoritesInterActor
-import a77777_888.me.t.ecommercesample.R
 import a77777_888.me.t.ecommercesample.databinding.FavoritesItemBinding
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 class FavoritesAdapter(
-    iFavoritesRepository: IFavoritesRepository
+    iFavoritesRepository: IFavoritesRepository,
+    private val emptyListListener: EmptyListListener
 ) : RecyclerView.Adapter<FavoritesAdapter.Holder>(){
 
     private val favoritesInterActor = FavoritesInterActor(iFavoritesRepository)
-    private val items = favoritesInterActor.getList().toMutableList()
+    private var items = favoritesInterActor.getList().toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val inflater = LayoutInflater.from(parent.context)
@@ -22,6 +24,7 @@ class FavoritesAdapter(
         return Holder(binding)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: Holder, position: Int) {
         val item = items[position]
 
@@ -29,17 +32,15 @@ class FavoritesAdapter(
             with(holder.binding) {
                 titleTextView.text = title
                 priceTextView.text = price.toString()
+                removeBtn.tag = position
 
-                favoriteSelectButton.setOnClickListener {
-                    if (favoritesInterActor.contains(item)) {
-                        favoritesInterActor.removeItem(item)
-                        this.favoriteSelectButton.setImageResource(R.drawable.ic_favorite_off)
-                        items.remove(item)
-                    } else {
-                        favoritesInterActor.addItem(item)
-                        this.favoriteSelectButton.setImageResource(R.drawable.ic_favorite_on)
-                        items.add(item)
-                    }
+                removeBtn.setOnClickListener {
+                    val removedItem = items[it.tag as Int]
+                    favoritesInterActor.removeItem(removedItem)
+                    items.remove(removedItem)
+                    if (items.isEmpty()) emptyListListener.onEmptyFavoritesList()
+
+                    notifyDataSetChanged()
                 }
 
                 Glide.with(imageView)
@@ -52,6 +53,10 @@ class FavoritesAdapter(
 
     override fun getItemCount(): Int {
         return favoritesInterActor.size()
+    }
+
+    interface EmptyListListener {
+        fun onEmptyFavoritesList()
     }
 
     class Holder(val binding: FavoritesItemBinding) : RecyclerView.ViewHolder(binding.root)

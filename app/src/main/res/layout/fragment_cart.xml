@@ -28,7 +28,7 @@
 
         <TextView
             android:id="@+id/addAddressTV"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="10"
             android:gravity="end|center_vertical"
@@ -46,9 +46,6 @@
             android:layout_gravity="end"
             android:layout_marginEnd="40dp"
             android:contentDescription="@string/add_to_cart"
-            android:padding="8dp"
-            android:scaleX="2"
-            android:scaleY="2"
             android:src="@drawable/ic_gps"
             />
 
@@ -90,9 +87,6 @@
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="vertical"
 
-                android:layout_marginTop="24dp"
-                android:layout_marginBottom="24dp"
-
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -117,7 +111,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/total"
-                android:textColor="@color/gray"
+                android:textColor="@color/lite_gray"
                 android:textSize="18sp"
                 android:textStyle="bold"
 
@@ -139,7 +133,7 @@
                 android:layout_marginStart="160dp"
 
                 app:layout_constraintBaseline_toBaselineOf="@id/totalTitle"
-                app:layout_constraintStart_toEndOf="@id/totalTitle"
+                app:layout_constraintEnd_toEndOf="@id/checkoutButton"
                 />
 
             <TextView
@@ -147,7 +141,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/delivery"
-                android:textColor="@color/gray"
+                android:textColor="@color/lite_gray"
                 android:textSize="18sp"
                 android:textStyle="bold"
 

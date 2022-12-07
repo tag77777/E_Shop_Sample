@@ -6,12 +6,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_margin="4dp"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/card_black"
+        android:background="@color/darker_gray"
         >
 
         <androidx.cardview.widget.CardView
@@ -34,9 +35,10 @@
 
         <TextView
             android:id="@+id/titleTextView"
-            android:layout_width="208dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:lines="2"
+            android:lines="1"
+            android:ellipsize="end"
             android:textColor="@color/white"
             android:textStyle="bold"
             android:textSize="18sp"
@@ -45,6 +47,7 @@
             android:layout_marginTop="8dp"
 
             app:layout_constraintStart_toEndOf="@id/imageCV"
+            app:layout_constraintEnd_toStartOf="@id/removeBtn"
             app:layout_constraintTop_toTopOf="@id/imageCV"
             tools:text="Samsung QE"
             />
@@ -64,12 +67,11 @@
             />
 
         <ImageView
-            android:id="@+id/favoriteSelectButton"
-            android:layout_width="wrap_content"
+            android:id="@+id/removeBtn"
+            android:layout_width="48dp"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_favorite_on"
-            android:scaleX="3"
-            android:scaleY="3"
+            android:src="@drawable/ic_remove"
+            app:tint="@color/lite_gray"
 
             android:layout_marginEnd="40dp"
 
