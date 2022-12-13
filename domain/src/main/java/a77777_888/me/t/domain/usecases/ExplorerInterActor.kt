@@ -1,16 +1,16 @@
 package a77777_888.me.t.domain.usecases
 
-import a77777_888.me.t.domain.model.IPhones
+import a77777_888.me.t.domain.model.IProducts
 import a77777_888.me.t.domain.model.LoadResult
 import a77777_888.me.t.domain.model.SuccessLoadResult
-import a77777_888.me.t.domain.repositories.phone.IPhonesRepository
+import a77777_888.me.t.domain.repositories.IProductsRepository
 
-class ExplorerInterActor (private val iPhonesRepository: IPhonesRepository) {
-    suspend fun phones(): LoadResult<IPhones> = SuccessLoadResult(iPhonesRepository.phones())
-    fun <T> tablets(): LoadResult<T>? = null
-    fun <T> tvSets(): LoadResult<T>? = null
-    fun <T> computers(): LoadResult<T>? = null
-    fun <T> tools(): LoadResult<T>? = null
-    fun <T> autoAccessories(): LoadResult<T>? = null
-    fun <T> books(): LoadResult<T>? = null
+class ExplorerInterActor (private val iPhonesRepository: IProductsRepository) {
+    suspend fun phones(): LoadResult<IProducts> = SuccessLoadResult(iPhonesRepository.products())
+    suspend fun <T> tablets(): LoadResult<IProducts> = SuccessLoadResult(iPhonesRepository.products())
+    suspend fun <T> tvSets(): LoadResult<T>? = null
+    suspend fun <T> computers(): LoadResult<T>? = null
+    suspend fun <T> tools(): LoadResult<T>? = null
+    suspend fun <T> autoAccessories(): LoadResult<T>? = null
+    suspend fun <T> books(): LoadResult<T>? = null
 }

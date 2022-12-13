@@ -14,14 +14,18 @@ import a77777_888.me.t.ecommercesample.presentation.cartfragment.CartFragment
 import a77777_888.me.t.ecommercesample.presentation.explorerfragment.adapters.BestSellerAdapter
 import a77777_888.me.t.ecommercesample.presentation.explorerfragment.adapters.CategoriesAdapter
 import a77777_888.me.t.ecommercesample.presentation.explorerfragment.adapters.HomeStoreAdapter
-import a77777_888.me.t.ecommercesample.presentation.favoritesfragment.FavoritesFragment
-import a77777_888.me.t.ecommercesample.presentation.model.phone.UiBestSellerItem
-import a77777_888.me.t.ecommercesample.presentation.model.phone.UiHomeStoreItem
+import a77777_888.me.t.ecommercesample.presentation.model.product.UiBestSellerItem
+import a77777_888.me.t.ecommercesample.presentation.model.product.UiHomeStoreItem
+import a77777_888.me.t.ecommercesample.presentation.detailsfragment.DetailsFragment
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -47,12 +51,15 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
 
    private lateinit var binding: FragmentExplorerBinding
    private val viewModel by viewModels<ExplorerViewModel>()
-   private lateinit var bestSellersList: List<UiBestSellerItem>
+   private var bestSellersList: List<UiBestSellerItem>? = null
    private lateinit var homeStoresList: List<UiHomeStoreItem>
    private lateinit var favoritesInterActor: FavoritesInterActor
    private lateinit var cartInterActor: CartInterActor
    private lateinit var cartBadge: BadgeDrawable
    private lateinit var favoritesBadge: BadgeDrawable
+   private lateinit var pulseIconAnimation: Animation
+   private lateinit var enterAnimation: Animation
+   private var cartNumberIsChanged = false
 
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
@@ -60,16 +67,22 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
       binding = FragmentExplorerBinding.bind(view)
       favoritesInterActor = FavoritesInterActor(favoritesRepository)
       cartInterActor = CartInterActor(cartRepository)
+      pulseIconAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.pulse)
+      enterAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
 
       initFragmentsResults()
-      loadResultObserve()
-      viewModel.getData()
+
+      if (bestSellersList == null) {
+         loadResultObserve()
+         viewModel.getData()
+      } else initUI()
+
    }
 
    private fun initFragmentsResults() {
       childFragmentManager.setFragmentResultListener(
          SearchDialogFragment.SEARCH_DIALOG,
-         this,
+          viewLifecycleOwner,
       ) { _, bundle ->
          val searchString = bundle.getString(SearchDialogFragment.SEARCH_STRING)
          Toast.makeText(requireContext(), "Search - $searchString", Toast.LENGTH_LONG).show()
@@ -77,7 +90,7 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
 
       childFragmentManager.setFragmentResultListener(
          FilterDialogFragment.FILTER_DIALOG,
-         this,
+          viewLifecycleOwner,
       ) { _, bundle ->
          val brand = bundle.getString(FilterDialogFragment.BRAND)
          val price = bundle.getString(FilterDialogFragment.PRICE)
@@ -89,19 +102,19 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
          ).show()
       }
 
-      childFragmentManager.setFragmentResultListener(
-         FavoritesFragment.FAVORITES,
-         this,
-      ) { _, bundle ->
-         favoritesBadge.number = bundle.getInt(FavoritesFragment.NUMBER)
+      parentFragmentManager.setFragmentResultListener(
+         DetailsFragment.DETAILS,
+         viewLifecycleOwner,
+      ) { _, _ ->
+         cartNumberIsChanged = true
       }
 
-childFragmentManager.setFragmentResultListener(
-         CartFragment.CART,
-         this,
-      ) { _, bundle ->
-         cartBadge.number = bundle.getInt(CartFragment.NUMBER)
-      }
+       parentFragmentManager.setFragmentResultListener(
+           CartFragment.CART,
+           viewLifecycleOwner,
+       ) { _, _ ->
+           cartNumberIsChanged = true
+       }
    }
 
    private fun loadResultObserve() =
@@ -127,8 +140,10 @@ childFragmentManager.setFragmentResultListener(
                      loadStateView.messageTextView.visibility = INVISIBLE
                      loadStateView.tryAgain.visibility = INVISIBLE
 
-                     initLists(it.value as IPhones)
+                     initLists(it.value as IProducts)
                      initUI()
+                     baseLayout.startAnimation(enterAnimation)
+
                   }
                   is ErrorLoadResult -> {
                      baseLayout.visibility = INVISIBLE
@@ -151,10 +166,10 @@ childFragmentManager.setFragmentResultListener(
 
          hotSaleCarousel.apply {
             adapter = HomeStoreAdapter(this@ExplorerFragment, homeStoresList)
-            setInfinite(true)
-//            setIntervalRatio(0.4f)
-//            setAlpha(true)
             setFlat(true)
+            setInfinite(true)
+            setIntervalRatio(0.6f)
+            setAlpha(true)
          }
 
          hotSalesSeeMoreBtn.setOnClickListener {
@@ -164,7 +179,7 @@ childFragmentManager.setFragmentResultListener(
 
          bestsellerRecyclerView.adapter = BestSellerAdapter(
             this@ExplorerFragment,
-            bestSellersList,
+            bestSellersList!!,
             favoritesRepository
          )
 
@@ -185,22 +200,49 @@ childFragmentManager.setFragmentResultListener(
          navigationBarView.cartBtn.setOnClickListener {
             findNavController().navigate(R.id.action_explorerFragment_to_cartFragment)
          }
-         cartBadge = BadgeDrawable.create(requireContext())
-         BadgeUtils.attachBadgeDrawable(cartBadge, navigationBarView.cartBtn)
-         cartBadge.maxCharacterCount = 2
-         cartBadge.number = cartInterActor.size()
 
          navigationBarView.favoritesBtn.setOnClickListener {
             findNavController().navigate(R.id.action_explorerFragment_to_favoritesFragment)
          }
-         favoritesBadge = BadgeDrawable.create(requireContext())
-         BadgeUtils.attachBadgeDrawable(favoritesBadge, navigationBarView.favoritesBtn)
-         favoritesBadge.maxCharacterCount = 2
-         favoritesBadge.number = favoritesInterActor.size()
+
+         navigationBarView.exitBtn.setOnClickListener {
+            requireActivity().finish()
+         }
+
+         val handler = Handler(Looper.getMainLooper())
+
+         handler.postDelayed(
+            {
+               cartBadge = BadgeDrawable.create(requireContext())
+               cartBadge.maxCharacterCount = 2
+               BadgeUtils.attachBadgeDrawable(cartBadge, navigationBarView.cartBtn)
+               cartBadge.number = cartInterActor.size()
+
+               favoritesBadge = BadgeDrawable.create(requireContext())
+               favoritesBadge.maxCharacterCount = 2
+               BadgeUtils.attachBadgeDrawable(favoritesBadge, navigationBarView.favoritesBtn)
+               favoritesBadge.number = favoritesInterActor.size()
+
+            },
+            500L
+         )
+
+         handler.postDelayed(
+            {
+               if (cartNumberIsChanged) {
+                  navigationBarView.cartBtn.startAnimation(pulseIconAnimation)
+                  cartNumberIsChanged = false
+               }
+            },
+            1000L
+         )
+
+
+
       }
    }
    @Suppress("UNCHECKED_CAST")
-   private fun initLists(phones: IPhones) {
+   private fun initLists(phones: IProducts) {
       homeStoresList = phones.homeStore as List<UiHomeStoreItem>
 //      val homeStores = mutableListOf<UiHomeStoreItem>()
 //      phones.homeStore.forEach { it as UiHomeStoreItem }
@@ -226,5 +268,7 @@ childFragmentManager.setFragmentResultListener(
 
    override fun onFavoritesChanged() {
       favoritesBadge.number = favoritesInterActor.size()
+      binding.navigationBarView.favoritesBtn.startAnimation(pulseIconAnimation)
    }
+
 }

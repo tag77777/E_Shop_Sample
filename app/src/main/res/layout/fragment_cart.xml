@@ -5,7 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".presentation.cartfragment.CartFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -128,6 +129,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 android:textStyle="bold"
+                android:text="@string/dollar"
                 tools:text="$9999"
 
                 android:layout_marginStart="160dp"

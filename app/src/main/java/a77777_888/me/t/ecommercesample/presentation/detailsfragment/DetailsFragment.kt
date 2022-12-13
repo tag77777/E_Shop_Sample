@@ -1,4 +1,4 @@
-package a77777_888.me.t.ecommercesample.presentation.phonedetailsfragment
+package a77777_888.me.t.ecommercesample.presentation.detailsfragment
 
 import a77777_888.me.t.domain.model.*
 import a77777_888.me.t.domain.repositories.ICartRepository
@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import a77777_888.me.t.ecommercesample.R
 import a77777_888.me.t.ecommercesample.TAG
-import a77777_888.me.t.ecommercesample.databinding.FragmentPhoneDetailsBinding
-import a77777_888.me.t.ecommercesample.presentation.model.phone.PhoneUIDetails
+import a77777_888.me.t.ecommercesample.databinding.FragmentDetailsBinding
+import a77777_888.me.t.ecommercesample.presentation.model.product.UiDetails
 import android.util.Log
 import android.view.View.INVISIBLE
 import android.view.View.VISIBLE
@@ -23,18 +23,18 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) {
+class DetailsFragment : Fragment(R.layout.fragment_details) {
 
     @Inject lateinit var iFavoritesRepository: IFavoritesRepository
     @Inject lateinit var iCartRepository: ICartRepository
 
-    private lateinit var binding: FragmentPhoneDetailsBinding
+    private lateinit var binding: FragmentDetailsBinding
     private val viewModel by viewModels<DetailsViewModel>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding = FragmentPhoneDetailsBinding.bind(view)
+        binding = FragmentDetailsBinding.bind(view)
 
         loadResultObserve()
         viewModel.getData()
@@ -63,7 +63,7 @@ class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) {
                      loadStateView.messageTextView.visibility = INVISIBLE
                      loadStateView.tryAgain.visibility = INVISIBLE
 
-                     initUI(mock(PhoneUIDetails(it.value as IPhoneDetails)))
+                     initUI(mock(UiDetails(it.value as IProductDetails)))
                   }
                   is ErrorLoadResult -> {
                      baseLayout.visibility = INVISIBLE
@@ -80,7 +80,7 @@ class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) {
          }
       }
 
-    private fun initUI(phoneUIDetails: PhoneUIDetails) {
+    private fun initUI(phoneUIDetails: UiDetails) {
             with(binding) {
                 imagesCarousel.apply {
                     adapter = ImagesDetailsAdapter(phoneUIDetails.images)
@@ -118,16 +118,16 @@ class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) {
                 addToCartBtn.apply {
                     val cartInterActor = CartInterActor(iCartRepository)
                     val cartItem = CartItem(ProductItem(phoneUIDetails), 1)
-                    setText(
-                        if (cartInterActor.contains(cartItem)) R.string.remove_from_cart
-                        else R.string.add_to_cart
-                    )
 
                     if (cartInterActor.contains(cartItem)) {
                         setText(R.string.remove_from_cart)
                     } else {
-                        setText(R.string.add_to_cart)
-                        append(cartItem.product.price.toString())
+//                        setText(R.string.add_to_cart)
+//                        append(cartItem.product.price.toString())
+                        text = String.format(
+                            getString(R.string.add_to_cart),
+                            cartItem.product.price
+                        )
                     }
 
                     setOnClickListener {
@@ -137,6 +137,8 @@ class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) {
                             cartInterActor.addCartItem(cartItem)
                         }
 
+                        parentFragmentManager.setFragmentResult(DETAILS, Bundle())
+
                         findNavController().navigateUp()
                     }
                 }
@@ -144,7 +146,7 @@ class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) {
             }
     }
 
-    private fun mock(details: PhoneUIDetails): PhoneUIDetails {
+    private fun mock(details: UiDetails): UiDetails {
         with(details) {
             id = requireArguments().getString(ID)!!
             title = requireArguments().getString(TITLE)!!
@@ -163,5 +165,7 @@ class PhoneDetailsFragment : Fragment(R.layout.fragment_phone_details) {
         const val TITLE = "title"
         const val PICTURE = "picture"
         const val PRICE = "price"
+
+        const val DETAILS = "fragment_details"
     }
 }

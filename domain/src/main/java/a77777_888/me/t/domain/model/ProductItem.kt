@@ -6,7 +6,7 @@ data class ProductItem(
     val image: String,
     val price: Int
 ) {
-    constructor(details: IPhoneDetails): this(
+    constructor(details: IProductDetails): this(
         id = details.id,
         title = details.title,
         image = details.images[0],

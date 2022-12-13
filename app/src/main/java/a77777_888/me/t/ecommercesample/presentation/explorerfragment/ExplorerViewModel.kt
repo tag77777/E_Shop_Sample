@@ -1,7 +1,7 @@
 package a77777_888.me.t.ecommercesample.presentation.explorerfragment
 
 import a77777_888.me.t.domain.model.*
-import a77777_888.me.t.domain.repositories.phone.IPhonesRepository
+import a77777_888.me.t.domain.repositories.IProductsRepository
 import a77777_888.me.t.domain.usecases.ExplorerInterActor
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -13,7 +13,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class ExplorerViewModel @Inject constructor(
-     phoneRepository: IPhonesRepository,
+    phoneRepository: IProductsRepository,
 ): ViewModel() {
     private val explorerInterActor = ExplorerInterActor(phoneRepository)
 

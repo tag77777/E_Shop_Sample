@@ -15,7 +15,6 @@ class CartAdapter(
 ) : RecyclerView.Adapter<CartAdapter.Holder>(){
 
     private val cartInterActor = CartInterActor(iCartRepository)
-    private val items = cartInterActor.getList().toMutableList()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val inflater = LayoutInflater.from(parent.context)
@@ -25,39 +24,45 @@ class CartAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        val item = items[position]
+//        val item = items[position]
+        val item = cartInterActor.getItem(position)
 
-        item.run {
-            with(holder.binding) {
-                titleTextView.text = product.title
-                priceTextView.text = product.price.toString()
-                numberTextView.text = number.toString()
-                removeBtn.tag = position
+        with(holder.binding) {
+            titleTextView.text = item.product.title
+            priceTextView.text = item.product.price.toString()
+            numberTextView.text = item.number.toString()
+            removeBtn.tag = item
 
-                plusBtn.setOnClickListener {
-                    numberTextView.text = (++number).toString()
-                }
-
-                minusBtn.setOnClickListener {
-                    if (number < 2) cartInterActor.removeCartItem(item)
-                    else numberTextView.text = (--number).toString()
-                }
-
-                removeBtn.setOnClickListener {
-                    val removedItem = items[it.tag as Int]
-                    cartInterActor.removeCartItem(removedItem)
-                    items.remove(removedItem)
-                    if (items.isEmpty()) emptyListListener.onEmptyCartList()
-
-                    notifyDataSetChanged()
-                }
-
-                Glide.with(imageView)
-                    .load(product.image)
-                    .centerCrop()
-                    .into(imageView)
+            plusBtn.setOnClickListener {
+                val newNumber = cartInterActor.getItem(holder.adapterPosition).number++
+                numberTextView.text = newNumber.toString()
             }
+
+            minusBtn.setOnClickListener {
+                if (item.number > 1) {
+                    val newNumber = cartInterActor.getItem(holder.adapterPosition).number--
+                    numberTextView.text = newNumber.toString()
+                }
+            }
+
+            removeBtn.setOnClickListener {
+                val removablePosition = holder.adapterPosition
+                val removableItem = cartInterActor.getItem(removablePosition)
+                cartInterActor.removeCartItem(removableItem)
+                if (cartInterActor.size() == 0) {
+                    emptyListListener.onEmptyCartList()
+                    return@setOnClickListener
+                }
+                notifyItemRemoved(removablePosition )
+                notifyItemRangeChanged(removablePosition , itemCount - removablePosition)
+            }
+
+            Glide.with(imageView)
+                .load(item.product.image)
+                .centerCrop()
+                .into(imageView)
         }
+
     }
 
     override fun getItemCount(): Int {
@@ -69,4 +74,5 @@ class CartAdapter(
     }
 
     class Holder(val binding:CartItemBinding) : RecyclerView.ViewHolder(binding.root)
+
 }

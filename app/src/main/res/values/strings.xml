@@ -19,8 +19,8 @@
     <string name="select_category">Select category</string>
     <string name="see_more">see more</string>
     <string name="best_seller">Best Seller</string>
-    <string name="dollar">$</string>
-    <string name="add_to_cart">Add to Cart\u0020\u0020\u0020      $</string>
+    <string name="dollar">$%d</string>
+    <string name="add_to_cart">Add to Cart\u0020\u0020\u0020      $%d</string>
     <string name="_128_gb">128 Gb</string>
     <string name="select_color_and_capacity">Select color and capacity</string>
     <string name="product_details">Product details</string>
@@ -57,6 +57,7 @@
     <string name="total">Total</string>
     <string name="remove_from_cart">Remove from Cart</string>
     <string name="exit">Exit</string>
+    <string name="cart">Cart</string>
 
     <string-array name="brands">
         <item>Xiaomi</item>

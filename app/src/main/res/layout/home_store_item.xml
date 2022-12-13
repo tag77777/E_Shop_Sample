@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:textColor="@color/white"
         android:textStyle="bold"
-        android:textSize="16sp"
+        android:textSize="14sp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="40dp"
         tools:text="Xiaomi Redmi"

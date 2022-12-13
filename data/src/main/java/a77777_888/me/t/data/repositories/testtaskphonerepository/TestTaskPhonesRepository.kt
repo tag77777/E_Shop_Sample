@@ -1,10 +1,8 @@
 package a77777_888.me.t.data.repositories.testtaskphonerepository
 
 import a77777_888.me.t.data.remote.testtaskrepository.TestTaskSourceProvider
-import a77777_888.me.t.domain.model.IPhones
-import a77777_888.me.t.domain.model.LoadResult
-import a77777_888.me.t.domain.repositories.phone.IPhonesRepository
-import kotlinx.coroutines.flow.Flow
+import a77777_888.me.t.domain.model.IProducts
+import a77777_888.me.t.domain.repositories.IProductsRepository
 
 //class TestTaskPhonesRepository(
 //    private val testTaskSourceProvider: TestTaskSourceProvider
@@ -17,9 +15,9 @@ import kotlinx.coroutines.flow.Flow
 
 class TestTaskPhonesRepository(
     private val testTaskSourceProvider: TestTaskSourceProvider
-) : IPhonesRepository {
+) : IProductsRepository {
 
-    override suspend fun phones(): IPhones {
+    override suspend fun products(): IProducts {
         return testTaskSourceProvider.api.getPhones()
     }
 }

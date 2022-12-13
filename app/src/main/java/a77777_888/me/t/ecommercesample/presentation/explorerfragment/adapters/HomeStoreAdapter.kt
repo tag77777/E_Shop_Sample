@@ -2,10 +2,9 @@ package a77777_888.me.t.ecommercesample.presentation.explorerfragment.adapters
 
 import a77777_888.me.t.domain.model.IHomeStoreItem
 import a77777_888.me.t.ecommercesample.databinding.HomeStoreItemBinding
-import android.graphics.Paint
+import a77777_888.me.t.ecommercesample.presentation.setUnderlinedText
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -50,7 +49,3 @@ class HomeStoreAdapter(
     }
 }
 
-fun TextView.setUnderlinedText(newText: String) {
-        text = newText
-        paintFlags = paintFlags or Paint.UNDERLINE_TEXT_FLAG
-    }

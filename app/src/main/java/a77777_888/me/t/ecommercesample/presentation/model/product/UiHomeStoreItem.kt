@@ -1,4 +1,4 @@
-package a77777_888.me.t.ecommercesample.presentation.model.phone
+package a77777_888.me.t.ecommercesample.presentation.model.product
 
 import a77777_888.me.t.domain.model.IHomeStoreItem
 

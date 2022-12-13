@@ -5,14 +5,13 @@ import a77777_888.me.t.domain.repositories.IFavoritesRepository
 import a77777_888.me.t.domain.usecases.FavoritesInterActor
 import a77777_888.me.t.ecommercesample.R
 import a77777_888.me.t.ecommercesample.databinding.BestsellerItemBinding
-import a77777_888.me.t.ecommercesample.presentation.model.phone.UiBestSellerItem
-import a77777_888.me.t.ecommercesample.presentation.phonedetailsfragment.PhoneDetailsFragment
+import a77777_888.me.t.ecommercesample.presentation.detailsfragment.DetailsFragment
+import a77777_888.me.t.ecommercesample.presentation.model.product.UiBestSellerItem
+import a77777_888.me.t.ecommercesample.presentation.setStrikeText
 import android.annotation.SuppressLint
-import android.graphics.Paint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -25,7 +24,7 @@ class BestSellerAdapter(
 
     private val favoritesInterActor = FavoritesInterActor(iFavoritesRepository)
 
-    var bestSellerList = items
+    var bestSellerList = items // оставлен публичным, поскольку возможно написание реализации для поиска и фильтра
         @SuppressLint("NotifyDataSetChanged")
         set(value) {
             field = value
@@ -45,8 +44,17 @@ class BestSellerAdapter(
         item.run {
             with(holder.binding) {
                 titleTextView.text = title
-                discountPriceTextView.text = discountPrice.toString()
-                priceTextView.setStrikeText(priceWithoutDiscount.toString())
+//                discountPriceTextView.text = discountPrice.toString()
+                discountPriceTextView.text = String.format(
+                    "$%d",
+                    discountPrice
+                )
+
+//                priceTextView.setStrikeText(priceWithoutDiscount.toString())
+                priceTextView.setStrikeText(String.format(
+                    "$%d",
+                    priceWithoutDiscount
+                ))
 
                 if (favoritesInterActor.contains(favoritesItem))
                     favoriteImageButton.setImageResource(R.drawable.ic_favorite_on)
@@ -71,10 +79,10 @@ class BestSellerAdapter(
 
                 root.setOnClickListener {
                     val bundle = bundleOf(
-                        PhoneDetailsFragment.ID to item.id.toString(),
-                        PhoneDetailsFragment.TITLE to item.title,
-                        PhoneDetailsFragment.PICTURE to item.picture,
-                        PhoneDetailsFragment.PRICE to item.discountPrice
+                        DetailsFragment.ID to item.id.toString(),
+                        DetailsFragment.TITLE to item.title,
+                        DetailsFragment.PICTURE to item.picture,
+                        DetailsFragment.PRICE to item.discountPrice
                     )
                     eventListener.onBestSellerItemClick(bundle)
                 }
@@ -94,8 +102,3 @@ class BestSellerAdapter(
         fun onFavoritesChanged()
     }
 }
-
-fun TextView.setStrikeText(newText: String) {
-        text = newText
-        paintFlags = paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
-    }

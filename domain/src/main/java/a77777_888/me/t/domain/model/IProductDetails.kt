@@ -1,6 +1,6 @@
 package a77777_888.me.t.domain.model
 
-interface IPhoneDetails {
+interface IProductDetails {
     val cpu: String
     val camera: String
     val capacity: List<String>

@@ -1,8 +1,8 @@
-package a77777_888.me.t.ecommercesample.presentation.model.phone
+package a77777_888.me.t.ecommercesample.presentation.model.product
 
-import a77777_888.me.t.domain.model.IPhoneDetails
+import a77777_888.me.t.domain.model.IProductDetails
 
-data class PhoneUIDetails(
+data class UiDetails(
     override val cpu: String,
     override val camera: String,
     override val capacity: List<String>,
@@ -15,9 +15,9 @@ data class PhoneUIDetails(
     override val sd: String,
     override val ssd: String,
     override var title: String
-) : IPhoneDetails {
+) : IProductDetails {
 
-    constructor(details: IPhoneDetails): this(
+    constructor(details: IProductDetails): this(
         cpu = details.cpu,
         camera = details.camera,
         capacity = details.capacity,

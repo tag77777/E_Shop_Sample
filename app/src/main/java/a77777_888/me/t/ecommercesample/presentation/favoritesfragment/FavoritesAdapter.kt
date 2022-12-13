@@ -1,6 +1,5 @@
 package a77777_888.me.t.ecommercesample.presentation.favoritesfragment
 
-import a77777_888.me.t.domain.model.ProductItem
 import a77777_888.me.t.domain.repositories.IFavoritesRepository
 import a77777_888.me.t.domain.usecases.FavoritesInterActor
 import a77777_888.me.t.ecommercesample.databinding.FavoritesItemBinding
@@ -32,15 +31,16 @@ class FavoritesAdapter(
             with(holder.binding) {
                 titleTextView.text = title
                 priceTextView.text = price.toString()
-                removeBtn.tag = position
 
                 removeBtn.setOnClickListener {
-                    val removedItem = items[it.tag as Int]
+                    val actualPosition = holder.adapterPosition
+                    val removedItem = items[actualPosition]
                     favoritesInterActor.removeItem(removedItem)
-                    items.remove(removedItem)
+                    items.removeAt(actualPosition)
                     if (items.isEmpty()) emptyListListener.onEmptyFavoritesList()
 
-                    notifyDataSetChanged()
+                    notifyItemRemoved(actualPosition)
+                    notifyItemRangeChanged(actualPosition, items.size)
                 }
 
                 Glide.with(imageView)

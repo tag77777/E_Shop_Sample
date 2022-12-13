@@ -6,7 +6,6 @@ import a77777_888.me.t.ecommercesample.R
 import a77777_888.me.t.ecommercesample.databinding.FragmentFavoritesBinding
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -36,15 +35,6 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites),
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-
-        val bundle = bundleOf(
-            NUMBER to favoritesInterActor.size()
-        )
-        parentFragmentManager.setFragmentResult(FAVORITES, bundle)
-    }
-
     override fun onEmptyFavoritesList() {
         exit()
     }
@@ -53,8 +43,4 @@ class FavoritesFragment : Fragment(R.layout.fragment_favorites),
         findNavController().navigateUp()
     }
 
-    companion object {
-        const val FAVORITES = "favorites_fragment"
-        const val NUMBER = "favorites_number"
-    }
 }

@@ -6,7 +6,6 @@ import a77777_888.me.t.ecommercesample.R
 import a77777_888.me.t.ecommercesample.databinding.FragmentCartBinding
 import android.os.Bundle
 import android.view.View
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,7 +26,11 @@ class CartFragment : Fragment(R.layout.fragment_cart),
         cartInterActor = CartInterActor(iCartRepository)
 
         with(binding) {
-            totalTextView.text = cartInterActor.getTotalPrice().toString()
+//            totalTextView.append(cartInterActor.getTotalPrice().toString())
+            totalTextView.text = String.format(
+                getString(R.string.dollar),
+                cartInterActor.getTotalPrice()
+            )
             cartRecyclerView.adapter = adapter
 
             cancelButton.setOnClickListener {
@@ -35,18 +38,20 @@ class CartFragment : Fragment(R.layout.fragment_cart),
             }
 
             checkoutButton.setOnClickListener {
-                totalTextView.text = cartInterActor.getTotalPrice().toString()
+                totalTextView.text = String.format(
+                    getString(R.string.dollar),
+                    cartInterActor.getTotalPrice()
+                )
             }
         }
 
 
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onStop() {
+        super.onStop()
 
-        val bundle = bundleOf(NUMBER to cartInterActor.size())
-        parentFragmentManager.setFragmentResult(CART, bundle)
+        parentFragmentManager.setFragmentResult(CART, Bundle())
     }
 
     override fun onEmptyCartList() {
@@ -59,6 +64,5 @@ class CartFragment : Fragment(R.layout.fragment_cart),
 
     companion object {
         const val CART = "cart_fragment"
-        const val NUMBER = "cart_number"
     }
 }

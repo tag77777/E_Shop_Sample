@@ -1,6 +1,6 @@
 package a77777_888.me.t.data.remote.entities
 
-import a77777_888.me.t.domain.model.IPhoneDetails
+import a77777_888.me.t.domain.model.IProductDetails
 import com.google.gson.annotations.SerializedName
 
 data class PhoneDetailsResponse(
@@ -17,4 +17,4 @@ data class PhoneDetailsResponse(
     override val sd: String,
     override val ssd: String,
     override val title: String
-) : IPhoneDetails
+) : IProductDetails

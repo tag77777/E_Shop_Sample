@@ -1,4 +1,4 @@
-package a77777_888.me.t.ecommercesample.presentation.phonedetailsfragment
+package a77777_888.me.t.ecommercesample.presentation.detailsfragment
 
 import a77777_888.me.t.ecommercesample.databinding.DetailsImagesItemBinding
 import android.view.LayoutInflater
