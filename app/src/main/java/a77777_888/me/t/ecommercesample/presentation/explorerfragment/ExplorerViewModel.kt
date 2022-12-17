@@ -1,22 +1,23 @@
 package a77777_888.me.t.ecommercesample.presentation.explorerfragment
 
-import a77777_888.me.t.domain.model.*
+import a77777_888.me.t.domain.model.EmptyLoadResult
+import a77777_888.me.t.domain.model.ErrorLoadResult
+import a77777_888.me.t.domain.model.LoadResult
+import a77777_888.me.t.domain.model.PendingLoadResult
 import a77777_888.me.t.domain.repositories.IProductsRepository
-import a77777_888.me.t.domain.usecases.ExplorerInterActor
+import a77777_888.me.t.domain.usecases.ExplorerUseCase
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class ExplorerViewModel @Inject constructor(
-    phoneRepository: IProductsRepository,
-): ViewModel() {
-    private val explorerInterActor = ExplorerInterActor(phoneRepository)
-
+class ExplorerViewModel : ViewModel() {
+    var iProductsRepository: IProductsRepository? = null
+        set(value) {
+            field = value
+            getData()
+        }
     private val _loadResultFlow = MutableStateFlow<LoadResult<out Any>>(EmptyLoadResult())
     val loadResultFlow: StateFlow<LoadResult<out Any>> = _loadResultFlow
 
@@ -26,10 +27,14 @@ class ExplorerViewModel @Inject constructor(
 
         viewModelScope.launch {
             _loadResultFlow.value = try {
-                explorerInterActor.phones()
+                if (iProductsRepository != null) {
+                    ExplorerUseCase.getData(iProductsRepository!!)
+                } else ErrorLoadResult(NullPointerException())
             } catch (e: Exception) {
                 ErrorLoadResult(e)
             }
+
+            _loadResultFlow.value = EmptyLoadResult()
         }
     }
 }

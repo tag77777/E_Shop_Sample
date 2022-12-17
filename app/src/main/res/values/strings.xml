@@ -58,6 +58,7 @@
     <string name="remove_from_cart">Remove from Cart</string>
     <string name="exit">Exit</string>
     <string name="cart">Cart</string>
+    <string name="empty_list_message">The list is empty. \nProbably all the goods are sold.</string>
 
     <string-array name="brands">
         <item>Xiaomi</item>

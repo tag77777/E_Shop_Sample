@@ -9,7 +9,7 @@ import javax.inject.Singleton
 import kotlin.random.Random
 
 @Singleton
-class MockPhonesRepository @Inject constructor(): IProductsRepository {
+class MockPhonesRepository : IProductsRepository {
 
     override suspend fun products(): IProducts {
         delay(Random.nextLong(1500))

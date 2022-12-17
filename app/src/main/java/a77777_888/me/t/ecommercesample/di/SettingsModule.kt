@@ -32,10 +32,5 @@ interface SettingsModule {
         repository: MockPhoneDetailsRepository
     ): IProductDetailsRepository
 
-    @Binds
-    fun bindPhonesRepository(
-        repository: MockPhonesRepository
-    ): IProductsRepository
-
 }
 

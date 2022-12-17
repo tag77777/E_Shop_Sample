@@ -13,6 +13,7 @@
         android:layout_gravity="center"
         android:indeterminateDrawable="@drawable/spinner_ring"
         android:indeterminateOnly="true"
+        android:visibility="invisible"
         />
 
     <TextView
@@ -26,6 +27,7 @@
         android:textStyle="bold|italic"
         android:textColor="@color/orange"
         android:layout_marginTop="24dp"
+        android:visibility="invisible"
         />
 
         <Button
@@ -35,6 +37,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="24dp"
             android:text="@string/try_again"
+            android:visibility="invisible"
             />
 
 </LinearLayout>

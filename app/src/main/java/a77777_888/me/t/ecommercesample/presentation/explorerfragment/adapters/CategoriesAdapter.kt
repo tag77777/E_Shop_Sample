@@ -21,18 +21,9 @@ class CategoriesAdapter(
 
     @SuppressWarnings("deprecation")
     override fun onBindViewHolder(holder: Holder, position: Int) {
-//        val context = holder.binding.titleTextView.context
-
-//        val orangeColor = context.resources.getColor(R.color.orange)
-//        val whiteColor = context.resources.getColor(R.color.white)
-//        val grayColor = context.resources.getColor(R.color.gray)
-
         val category = listCategory[position]
         with(holder.binding.titleTextView) {
             setText(category.tile)
-//            setTextColor(
-//                if (position == selectedPosition) orangeColor else grayColor
-//            )
             isSelected = holder.adapterPosition == selectedPosition
         }
 
