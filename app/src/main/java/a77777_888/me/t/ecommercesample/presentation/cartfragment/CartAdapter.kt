@@ -24,7 +24,6 @@ class CartAdapter(
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onBindViewHolder(holder: Holder, position: Int) {
-//        val item = items[position]
         val item = cartInterActor.getItem(position)
 
         with(holder.binding) {
@@ -34,14 +33,16 @@ class CartAdapter(
             removeBtn.tag = item
 
             plusBtn.setOnClickListener {
-                val newNumber = cartInterActor.getItem(holder.adapterPosition).number++
-                numberTextView.text = newNumber.toString()
+                val cartItem = cartInterActor.getItem(holder.adapterPosition)
+                cartItem.number++
+                numberTextView.text = cartItem.number.toString()
             }
 
             minusBtn.setOnClickListener {
                 if (item.number > 1) {
-                    val newNumber = cartInterActor.getItem(holder.adapterPosition).number--
-                    numberTextView.text = newNumber.toString()
+                    val cartItem = cartInterActor.getItem(holder.adapterPosition)
+                    cartItem.number--
+                    numberTextView.text = cartItem.number.toString()
                 }
             }
 

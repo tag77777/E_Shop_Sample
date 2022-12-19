@@ -33,6 +33,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.badge.ExperimentalBadgeUtils
@@ -173,10 +174,10 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
 
          hotSaleCarousel.apply {
             adapter = HomeStoreAdapter(this@ExplorerFragment, homeStoresList)
-            setFlat(true)
             setInfinite(true)
-            setIntervalRatio(0.6f)
-            setAlpha(true)
+            setAlpha(false)
+//            setIntervalRatio(0.4f)
+//            setFlat(true)
          }
 
          bestsellerRecyclerView.adapter = BestSellerAdapter(
@@ -186,7 +187,7 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
          )
 
          hotSalesSeeMoreBtn.setOnClickListener {
-            val nextPosition = hotSaleCarousel.getSelectedPosition() + 1
+            val nextPosition = (hotSaleCarousel.getSelectedPosition() + 1) % 3
             hotSaleCarousel.getCarouselLayoutManager().scrollToPosition(nextPosition)
          }
 

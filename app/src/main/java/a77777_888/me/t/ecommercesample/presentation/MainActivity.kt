@@ -14,13 +14,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        MockDataRepository.init(applicationContext)
-
         val binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-//        window.statusBarColor = Color.WHITE
-
 
     }
 

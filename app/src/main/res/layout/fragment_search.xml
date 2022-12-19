@@ -6,7 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/black_shape_bg"
-    android:backgroundTint="@color/white">
+    android:backgroundTint="@color/white"
+    android:paddingTop="24dp"
+    >
 
     <ImageButton
         android:id="@+id/closeButton"
@@ -22,7 +24,6 @@
         android:id="@+id/searchText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="32dp"
         android:layout_weight="1"
 
         android:importantForAutofill="no"
@@ -37,6 +38,11 @@
         android:layout_margin="16dp"
 
         android:text="@string/search" />
+
+    <Space
+        android:layout_width="0dp"
+        android:layout_height="450dp"
+        />
 
 </LinearLayout>
 

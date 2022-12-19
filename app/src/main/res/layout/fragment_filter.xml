@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@drawable/black_shape_bg"
-    android:backgroundTint="@color/white"
+    android:backgroundTint="#E6FFFFFF"
     >
 
     <ImageButton
@@ -67,14 +67,16 @@
         android:id="@+id/brandSpinner"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="4dp"
+        android:entries="@array/brands"
+        android:background="@color/white"
         android:contentDescription="@string/brand"
 
-        android:entries="@array/brands"
+        android:layout_marginTop="4dp"
 
-        app:layout_constraintEnd_toEndOf="@id/doneButton"
+        app:layout_constraintEnd_toEndOf="@id/titleTV"
         app:layout_constraintStart_toStartOf="@id/closeButton"
-        app:layout_constraintTop_toBottomOf="@id/brandTitle" />
+        app:layout_constraintTop_toBottomOf="@id/brandTitle"
+        />
 
     <TextView
         android:id="@+id/priceTitle"
@@ -93,12 +95,13 @@
         android:id="@+id/priceSpinner"
         android:layout_width="0dp"
         android:layout_height="40dp"
-        android:layout_marginTop="4dp"
+        android:entries="@array/prices"
+        android:background="@color/white"
         android:contentDescription="@string/price"
 
-        android:entries="@array/prices"
+        android:layout_marginTop="4dp"
 
-        app:layout_constraintEnd_toEndOf="@id/doneButton"
+        app:layout_constraintEnd_toEndOf="@id/titleTV"
         app:layout_constraintStart_toStartOf="@id/closeButton"
         app:layout_constraintTop_toBottomOf="@id/priceTitle" />
 
@@ -119,13 +122,14 @@
         android:id="@+id/sizeSpinner"
         android:layout_width="0dp"
         android:layout_height="40dp"
+        android:entries="@array/sizes"
+        android:background="@color/white"
+        android:contentDescription="@string/size"
+
         android:layout_marginTop="4dp"
         android:layout_marginBottom="40dp"
 
-        android:contentDescription="@string/size"
-        android:entries="@array/sizes"
-
-        app:layout_constraintEnd_toEndOf="@id/doneButton"
+        app:layout_constraintEnd_toEndOf="@id/titleTV"
         app:layout_constraintStart_toStartOf="@id/closeButton"
         app:layout_constraintTop_toBottomOf="@id/sizeTitle" />
 

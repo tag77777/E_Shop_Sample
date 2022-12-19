@@ -1,5 +1,6 @@
 package a77777_888.me.t.ecommercesample.presentation
 
+import a77777_888.me.t.ecommercesample.R
 import a77777_888.me.t.ecommercesample.databinding.FragmentFilterBinding
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,6 +12,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 class FilterDialogFragment : BottomSheetDialogFragment() {
 
     lateinit var binding: FragmentFilterBinding
+
+    override fun getTheme(): Int  = R.style.AppBottomSheetDialogTheme
 
     override fun onCreateView(
         inflater: LayoutInflater,

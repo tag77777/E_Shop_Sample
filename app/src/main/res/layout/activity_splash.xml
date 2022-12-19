@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:src="@drawable/new_background"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        tools:scaleX="5.5"
+        tools:scaleY="5.5"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/ecommerceTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/ecommerce"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="32dp"
+        android:layout_marginBottom="24dp"
+        android:layout_marginStart="48dp"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        tools:ignore="SpUsage"
+        />
+
+    <TextView
+        android:id="@+id/conceptTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/concept"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="48dp"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        tools:ignore="SpUsage"
+        />
+
+
+
+</FrameLayout>

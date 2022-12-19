@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="RatingBarStyle" parent="Theme.AppCompat">
-        <item name="colorControlNormal">@android:color/darker_gray</item>
-        <item name="colorControlActivated">@android:color/holo_orange_dark</item>
+    <style name="AppBottomSheetDialogTheme"
+        parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AppModalStyle</item>
+        <item name="materialButtonStyle">@style/Widget.MaterialComponents.Button</item>
+        <item name="android:elevation">16dp</item>
+    </style>
+
+    <style name="AppModalStyle"
+        parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/black_shape_bg</item>
+        <item name="backgroundTint">#E6FFFFFF</item>
     </style>
 
 </resources>
+
+
+

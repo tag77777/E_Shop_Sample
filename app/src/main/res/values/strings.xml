@@ -58,7 +58,9 @@
     <string name="remove_from_cart">Remove from Cart</string>
     <string name="exit">Exit</string>
     <string name="cart">Cart</string>
-    <string name="empty_list_message">The list is empty. \nProbably all the goods are sold.</string>
+    <string name="empty_list_message">The list is empty. \nIt\'s possible everything sold</string>
+    <string name="ecommerce">Ecommerce</string>
+    <string name="concept">Concept</string>
 
     <string-array name="brands">
         <item>Xiaomi</item>
@@ -80,4 +82,13 @@
         <item>6.0 to 6.4 inches</item>
         <item>over 6.5 inches</item>
     </string-array>
+    <string name="title_activity_splash">SplashActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

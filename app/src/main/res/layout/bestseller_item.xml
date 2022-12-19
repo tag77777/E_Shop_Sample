@@ -6,9 +6,8 @@
     android:layout_width="match_parent"
     android:layout_height="240dp"
     app:cardCornerRadius="8dp"
-    android:elevation="8dp"
+    android:elevation="16dp"
     android:layout_margin="4dp"
-    android:outlineAmbientShadowColor="@color/darker_gray"
     android:focusable="true"
     android:clickable="true"
     >
@@ -25,6 +24,7 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_margin="4dp"
+            android:contentDescription="@string/best_seller"
 
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,6 +38,7 @@
             android:layout_height="49dp"
             android:src="@drawable/ic_favorite_off"
             android:background="@drawable/ic_favorite_bg"
+            android:contentDescription="@string/favorites"
 
             android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"

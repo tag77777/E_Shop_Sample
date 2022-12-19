@@ -18,5 +18,12 @@
         <item name="statusBarForeground">@color/black</item>
         <!-- Customize your theme here. -->
     </style>
+    <style name="Theme.EcommerceSample.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.EcommerceSample.AppBarOverlay"
+        parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.EcommerceSample.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
 </resources>
