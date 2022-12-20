@@ -66,12 +66,13 @@
             tools:text="$9999"
             />
 
-        <ImageView
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/removeBtn"
             android:layout_width="48dp"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_remove"
-            app:tint="@color/lite_gray"
+            android:layout_height="49dp"
+            app:icon="@drawable/ic_remove"
+            app:iconTint="@color/lite_gray"
+            android:backgroundTint="@color/darker_gray"
 
             android:layout_marginEnd="40dp"
 

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/bottomNavView"
     android:orientation="horizontal"
     android:layout_width="match_parent"
@@ -11,23 +10,17 @@
     android:paddingStart="17dp"
     android:paddingEnd="17dp"
     >
-    <ImageView
-        android:id="@+id/exitBtn"
-        android:layout_width="32dp"
-        android:layout_height="32dp"
-        app:srcCompat="@drawable/ic_exit_to_app"
-        android:contentDescription="@string/explorer"
-        android:layout_marginStart="8dp"
-        />
 
-    <TextView
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/exitBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        app:icon="@drawable/ic_exit_to_app"
         android:text="@string/exit"
-        android:textStyle="italic"
-        android:textSize="16dp"
-        android:textColor="@color/white"
-        tools:ignore="SpUsage"
+        android:textStyle="italic|bold"
+        android:textAppearance="?attr/textAppearanceListItem"
+        android:backgroundTint="@color/black"
         />
 
     <Space
@@ -47,11 +40,11 @@
 
    <ImageView
         android:id="@+id/filterBtn"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
         app:srcCompat="@drawable/ic_filter"
-        android:padding="4dp"
-        android:contentDescription="@string/add_to_cart"
+        android:padding="8dp"
+        android:contentDescription="@string/filter_options"
         android:layout_marginStart="16dp"
         />
 
