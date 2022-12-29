@@ -35,10 +35,7 @@ class CategoriesAdapter(
             )
             isSelected =  holder.adapterPosition == selectedPosition
             setOnClickListener {
-                val oldSelectedPosition = selectedPosition
-                selectedPosition = holder.adapterPosition
-                notifyItemChanged(oldSelectedPosition)
-                notifyItemChanged(selectedPosition)
+                selectPosition(holder.adapterPosition)
                 listener.onCategorySelect(holder.adapterPosition)
             }
         }
@@ -46,6 +43,13 @@ class CategoriesAdapter(
 
     override fun getItemCount(): Int {
         return listCategory.size
+    }
+
+    fun selectPosition(position: Int) {
+        val oldSelectedPosition = selectedPosition
+        selectedPosition = position
+        notifyItemChanged(oldSelectedPosition)
+        notifyItemChanged(selectedPosition)
     }
 
     class Holder(val binding: CategoriesItemBinding) : RecyclerView.ViewHolder(binding.root)

@@ -11,13 +11,13 @@ import a77777_888.me.t.ecommercesample.databinding.FragmentExplorerBinding
 import a77777_888.me.t.ecommercesample.presentation.FilterDialogFragment
 import a77777_888.me.t.ecommercesample.presentation.SearchDialogFragment
 import a77777_888.me.t.ecommercesample.presentation.cartfragment.CartFragment
+import a77777_888.me.t.ecommercesample.presentation.detailsfragment.DetailsFragment
 import a77777_888.me.t.ecommercesample.presentation.explorerfragment.adapters.BestSellerAdapter
 import a77777_888.me.t.ecommercesample.presentation.explorerfragment.adapters.CategoriesAdapter
 import a77777_888.me.t.ecommercesample.presentation.explorerfragment.adapters.HomeStoreAdapter
+import a77777_888.me.t.ecommercesample.presentation.model.listCategory
 import a77777_888.me.t.ecommercesample.presentation.model.product.UiBestSellerItem
 import a77777_888.me.t.ecommercesample.presentation.model.product.UiHomeStoreItem
-import a77777_888.me.t.ecommercesample.presentation.detailsfragment.DetailsFragment
-import a77777_888.me.t.ecommercesample.presentation.model.listCategory
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -33,7 +33,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearSnapHelper
 import com.google.android.material.badge.BadgeDrawable
 import com.google.android.material.badge.BadgeUtils
 import com.google.android.material.badge.ExperimentalBadgeUtils
@@ -53,33 +52,64 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
 
    private lateinit var binding: FragmentExplorerBinding
    private val viewModel by viewModels<ExplorerViewModel>()
-   private var bestSellersList: List<UiBestSellerItem>? = null
-   private lateinit var homeStoresList: List<UiHomeStoreItem>
+
    private lateinit var favoritesInterActor: FavoritesInterActor
    private lateinit var cartInterActor: CartInterActor
+
+   private var bestSellersList: List<UiBestSellerItem>? = null
+   private var homeStoresList: List<UiHomeStoreItem>? = null
+
    private lateinit var cartBadge: BadgeDrawable
    private lateinit var favoritesBadge: BadgeDrawable
+
    private lateinit var pulseIconAnimation: Animation
    private lateinit var enterAnimation: Animation
+
+   private var categoriesAdapter = CategoriesAdapter(this)
+   private var categoriesPosition = 0
    private var cartNumberIsChanged = false
+
+   override fun onCreate(savedInstanceState: Bundle?) {
+      super.onCreate(savedInstanceState)
+
+      favoritesInterActor = FavoritesInterActor(favoritesRepository)
+      cartInterActor = CartInterActor(cartRepository)
+      pulseIconAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.pulse)
+      enterAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
+   }
 
    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
       super.onViewCreated(view, savedInstanceState)
 
       binding = FragmentExplorerBinding.bind(view)
-      favoritesInterActor = FavoritesInterActor(favoritesRepository)
-      cartInterActor = CartInterActor(cartRepository)
-      pulseIconAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.pulse)
-      enterAnimation = AnimationUtils.loadAnimation(requireContext(), R.anim.fade_in)
-
       initFragmentsResults()
-      if (bestSellersList == null) {
-         loadResultObserve()
-         onCategorySelect(0)
-      } else {
-         initUI()
+      loadResultObserve()
+
+      viewModel.savedState?.let {
+         homeStoresList = it.homeStoreList
+         bestSellersList = it.bestSellersList
+         categoriesPosition = it.categoriesPosition
       }
 
+      if (bestSellersList == null) {
+            onCategorySelect(0)
+      } else {
+         setupUI()
+      }
+
+   }
+
+   override fun onPause() {
+      super.onPause()
+
+      viewModel.savedState = State(
+         homeStoresList,
+         bestSellersList,
+         categoriesPosition,
+         binding.homeStoreCarousel.getSelectedPosition(),
+         (binding.bestsellerRecyclerView.layoutManager as GridLayoutManager)
+            .findFirstVisibleItemPosition()
+      )
    }
 
    private fun initFragmentsResults() {
@@ -125,7 +155,17 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
          viewModel.loadResultFlow.collect {
             with(binding) {
                when (it) {
-                  is EmptyLoadResult -> {}
+                  is EmptyLoadResult -> {
+                     loadStateView.messageTextView.setText(R.string.empty_list_message)
+                     bestSellersList = listOf()
+                     homeStoresList = listOf()
+                     setupUI()
+
+                     baseLayout.visibility = INVISIBLE
+                     loadStateView.progressBar.visibility = INVISIBLE
+                     loadStateView.messageTextView.visibility = VISIBLE
+                     loadStateView.tryAgain.visibility = INVISIBLE
+                  }
                   is PendingLoadResult -> {
                      loadStateView.messageTextView.setText(R.string.please_wait)
                      baseLayout.visibility = INVISIBLE
@@ -134,24 +174,14 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
                      loadStateView.tryAgain.visibility = INVISIBLE
                   }
                   is SuccessLoadResult -> {
-                     val resultValue = it.value as IProducts
-                     initLists(resultValue)
-                     if (resultValue.bestSeller.isEmpty()) {
-                        loadStateView.messageTextView.setText(R.string.empty_list_message)
+                     baseLayout.visibility = VISIBLE
+                     loadStateView.progressBar.visibility = INVISIBLE
+                     loadStateView.messageTextView.visibility = INVISIBLE
+                     loadStateView.tryAgain.visibility = INVISIBLE
 
-                        baseLayout.visibility = INVISIBLE
-                        loadStateView.progressBar.visibility = INVISIBLE
-                        loadStateView.messageTextView.visibility = VISIBLE
-                        loadStateView.tryAgain.visibility = INVISIBLE
-                     } else {
-                        baseLayout.visibility = VISIBLE
-                        loadStateView.progressBar.visibility = INVISIBLE
-                        loadStateView.messageTextView.visibility = INVISIBLE
-                        loadStateView.tryAgain.visibility = INVISIBLE
-
-                        initUI()
-                        baseLayout.startAnimation(enterAnimation)
-                     }
+                     initLists(it.value as IProducts)
+                     setupUI()
+                     baseLayout.startAnimation(enterAnimation)
                   }
                   is ErrorLoadResult -> {
                      baseLayout.visibility = INVISIBLE
@@ -168,12 +198,12 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
          }
       }
 
-   private fun initUI() {
+   private fun setupUI() {
       with(binding) {
-         categoriesRecyclerView.adapter = CategoriesAdapter(this@ExplorerFragment)
+         categoriesRecyclerView.adapter = categoriesAdapter
 
-         hotSaleCarousel.apply {
-            adapter = HomeStoreAdapter(this@ExplorerFragment, homeStoresList)
+         homeStoreCarousel.apply {
+            adapter = HomeStoreAdapter(this@ExplorerFragment, homeStoresList!!)
             setInfinite(true)
             setAlpha(false)
 //            setIntervalRatio(0.4f)
@@ -186,9 +216,20 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
             favoritesRepository
          )
 
+         if (viewModel.savedState != null) {
+            categoriesRecyclerView.layoutManager?.scrollToPosition(categoriesPosition)
+            categoriesAdapter.selectPosition(categoriesPosition)
+
+            homeStoreCarousel.layoutManager
+               ?.scrollToPosition(viewModel.savedState!!.homeStorePosition)
+
+            bestsellerRecyclerView.layoutManager
+               ?.scrollToPosition(viewModel.savedState!!.bestSellersPosition)
+         }
+
          hotSalesSeeMoreBtn.setOnClickListener {
-            val nextPosition = (hotSaleCarousel.getSelectedPosition() + 1) % 3
-            hotSaleCarousel.getCarouselLayoutManager().scrollToPosition(nextPosition)
+            val nextPosition = (homeStoreCarousel.getSelectedPosition() + 1) % 3
+            homeStoreCarousel.getCarouselLayoutManager().scrollToPosition(nextPosition)
          }
 
          bestSellersSeeMoreBtn.setOnClickListener {
@@ -245,8 +286,6 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
             1000L
          )
 
-
-
       }
    }
    @Suppress("UNCHECKED_CAST")
@@ -256,6 +295,7 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
    }
 
    override fun onCategorySelect(position: Int) {
+      categoriesPosition = position
       viewModel.iProductsRepository = listCategory[position].productsRepository
    }
 
@@ -271,5 +311,13 @@ class ExplorerFragment : Fragment(R.layout.fragment_explorer),
       favoritesBadge.number = favoritesInterActor.size()
       binding.navigationBarView.favoritesBtn.startAnimation(pulseIconAnimation)
    }
+
+   class State (
+      val homeStoreList: List<UiHomeStoreItem>?,
+      val bestSellersList: List<UiBestSellerItem>?,
+      val categoriesPosition: Int,
+      val homeStorePosition: Int,
+      val bestSellersPosition: Int
+   )
 
 }

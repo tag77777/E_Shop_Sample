@@ -6,6 +6,8 @@ import a77777_888.me.t.domain.model.LoadResult
 import a77777_888.me.t.domain.model.PendingLoadResult
 import a77777_888.me.t.domain.repositories.IProductsRepository
 import a77777_888.me.t.domain.usecases.ExplorerUseCase
+import a77777_888.me.t.ecommercesample.TAG
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -18,9 +20,9 @@ class ExplorerViewModel : ViewModel() {
             field = value
             getData()
         }
-    private val _loadResultFlow = MutableStateFlow<LoadResult<out Any>>(EmptyLoadResult())
-    val loadResultFlow: StateFlow<LoadResult<out Any>> = _loadResultFlow
 
+    private val _loadResultFlow = MutableStateFlow<LoadResult<out Any>>(PendingLoadResult())
+    val loadResultFlow: StateFlow<LoadResult<out Any>> = _loadResultFlow
 
     fun getData() {
         _loadResultFlow.value = PendingLoadResult()
@@ -28,13 +30,15 @@ class ExplorerViewModel : ViewModel() {
         viewModelScope.launch {
             _loadResultFlow.value = try {
                 if (iProductsRepository != null) {
-                    ExplorerUseCase.getData(iProductsRepository!!)
+                    val result = ExplorerUseCase.getData(iProductsRepository!!)
+                    if (result.value.bestSeller.isNotEmpty()) result
+                        else EmptyLoadResult()
                 } else ErrorLoadResult(NullPointerException())
             } catch (e: Exception) {
                 ErrorLoadResult(e)
             }
-
-            _loadResultFlow.value = EmptyLoadResult()
         }
     }
+
+    var savedState: ExplorerFragment.State? = null
 }
