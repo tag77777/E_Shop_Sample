@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class TestTaskSourceProvider {
-    val api: ITestTaskAPI = Retrofit.Builder()
+        internal val api: ITestTaskAPI = Retrofit.Builder()
         .baseUrl(ITestTaskAPI.BASE_URL)
         .addConverterFactory(GsonConverterFactory.create())
         .build()

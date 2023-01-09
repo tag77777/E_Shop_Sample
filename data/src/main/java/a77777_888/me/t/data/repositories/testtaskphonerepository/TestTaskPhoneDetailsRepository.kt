@@ -6,22 +6,12 @@ import a77777_888.me.t.domain.repositories.IProductDetailsRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
-//class TestTaskPhoneDetailsRepository(
-//    private val testTaskSourceProvider: TestTaskSourceProvider
-//) : IPhoneDetailsRepository {
-//
-//    override fun getPhoneDetails(): Flow<LoadResult<IPhoneDetails>> =
-//        wrapToFlowForTestTask {
-//            testTaskSourceProvider.api.getPhoneDetails()
-//        }
-//}
-
 class TestTaskPhoneDetailsRepository(
     private val testTaskSourceProvider: TestTaskSourceProvider
 ) : IProductDetailsRepository {
 
     override suspend fun getPhoneDetails(): IProductDetails {
-        return testTaskSourceProvider.api.getPhoneDetails()
+        return testTaskSourceProvider.api.getProductDetails()
     }
 
 }
